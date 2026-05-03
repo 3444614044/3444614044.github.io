@@ -9,11 +9,29 @@
 - **渐进式难度**：从基础文件操作到网络连接，难度递增
 - **开源友好**：所有关卡配置公开，玩家可自制关卡
 - **自动化发布**：每天自动构建和发布新版本
+- **跨平台支持**：支持Linux、Android平台
 
-## GitHub链接
+## 下载链接
 
-- 仓库地址: https://github.com/3444614044/git-escape-game
-- Release下载: https://github.com/3444614044/git-escape-game/releases/tag/v1.0.0
+- **GitHub仓库**: https://github.com/3444614044/git-escape-game
+- **Release下载**: https://github.com/3444614044/git-escape-game/releases/tag/v1.0.0
+- **Android版本**: git-escape-android.tar.gz (已上传)
+- **Linux版本**: git-escape-*.tar.gz
+
+## Android平台
+
+### Android版本特点
+✅ **在Termux中运行**：不需要安装APK
+✅ **真实命令行**：Android上学习Linux命令
+✅ **移动学习**：随时随地学习命令行技能
+✅ **免费开源**：完全免费且开源
+
+### Android安装步骤
+1. 安装Termux应用
+2. 配置Termux: `pkg update && pkg upgrade`
+3. 下载游戏: `wget https://github.com/3444614044/git-escape-game/releases/download/v1.0.0/git-escape-android.tar.gz`
+4. 解压运行: `tar -xzf git-escape-android.tar.gz`
+5. 运行游戏: `./git-escape.sh start`
 
 ## 游戏架构
 
@@ -25,6 +43,7 @@
 
 ## 快速开始
 
+### Linux/Windows
 ```bash
 # 下载游戏
 wget https://github.com/3444614044/git-escape-game/releases/download/v1.0.0/git-escape-2026.05.03-09.27.tar.gz
@@ -36,6 +55,17 @@ cd build
 
 # 查看帮助
 ./git-escape.sh help
+```
+
+### Android
+```bash
+# 在Termux中下载游戏
+wget https://github.com/3444614044/git-escape-game/releases/download/v1.0.0/git-escape-android.tar.gz
+
+# 解压运行
+tar -xzf git-escape-android.tar.gz
+cd git-escape-android
+./git-escape.sh start
 ```
 
 ## 关卡设计
@@ -87,12 +117,14 @@ cd build
 ## 开发计划
 
 当前版本：v1.0.0
-支持关卡：3个完整关卡
+支持平台：Linux、Android（Termux）
 
 后续计划：
 - Level 4: 权限管理（chmod/chown）
 - Level 5: 脚本编写（bash脚本）
 - Level 6: 数据加密解密
+- Windows版本支持
+- Web版本支持
 
 ## 贡献
 
@@ -107,4 +139,4 @@ MIT License
 
 ## 联系方式
 
-游戏已成功上传到GitHub，可以公开下载和分享。
+游戏已成功上传到GitHub，可以公开下载和分享。Android版本已打包上传，可以在Termux中运行。
