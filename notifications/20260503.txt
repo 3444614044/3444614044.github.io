@@ -1,0 +1,7 @@
+Git Escape v2026.05.03-09.27 已构建完成
+构建时间: Sun May  3 09:27:05 AM CST 2026
+文件位置: git-escape-2026.05.03-09.27.tar.gz
+关卡数量: 3
+运行命令: ./git-escape.sh start
+
+本地HTTP服务器: python3 -m http.server 8000

@@ -1,0 +1,63 @@
+# Git Escape 游戏配置
+
+game:
+  name: "Git Escape"
+  version: "0.1.0"
+  description: "命令行解谜游戏 - 通过执行真实命令逃脱"
+  author: "Jerry"
+
+levels:
+  level1:
+    title: "文件操作迷宫"
+    difficulty: "入门"
+    description: "你被困在一个满是文件的目录中，需要找到隐藏的密码"
+    objective: "找到名为 'secret.txt' 的文件并读取其中的密码"
+    hints:
+      - "试试使用 ls 命令查看目录内容"
+      - "文件可能隐藏在子目录中"
+      - "密码文件的名字是 secret.txt"
+    commands:
+      - "ls"
+      - "ls -la"
+      - "cd"
+      - "cat"
+    success_condition: "读取到密码：'Escape123'"
+    time_limit: null
+
+  level2:
+    title: "Git侦探"
+    difficulty: "中级"
+    description: "通过git历史记录找出谁修改了关键文件"
+    objective: "分析git提交历史，找出可疑的提交者"
+    hints:
+      - "git log 可以查看提交历史"
+      - "注意提交时间和提交者"
+      - "寻找异常的文件修改"
+    commands:
+      - "git log"
+      - "git log --oneline"
+      - "git log --since"
+      - "git show"
+    success_condition: "找出提交者 'anonymous' 的可疑提交"
+    time_limit: null
+
+  level3:
+    title: "网络连接"
+    difficulty: "中级"
+    description: "需要通过netcat连接到远程端口获取数据"
+    objective: "连接指定端口，读取返回的数据"
+    hints:
+      - "nc (netcat) 命令可以建立网络连接"
+      - "端口号很重要"
+      - "可能需要多次尝试"
+    commands:
+      - "nc"
+      - "telnet"
+    success_condition: "读取到数据：'Access granted'"
+    time_limit: null
+
+engine:
+  max_attempts: 10
+  hint_interval: 3
+  score_system: true
+  save_progress: true

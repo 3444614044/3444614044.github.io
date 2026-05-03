@@ -1,0 +1,53 @@
+name: Auto GitHub Upload
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '0 8 * * *'  # 每天早上8点自动构建
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Run tests
+        run: |
+          cd tests
+          ./test_level1.sh
+          
+      - name: Build game
+        run: |
+          ./build.sh
+        
+      - name: Create GitHub Release
+        id: release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ github.run_number }}
+          name: Git Escape v${{ github.run_number }}
+          body: |
+            ## Git Escape
+            
+            ### 游戏特点
+            - 命令行解谜游戏
+            - 教授Linux和Git命令
+            - 包含3个关卡
+            
+            ### 使用方法
+            1. 下载游戏包
+            2. 解压: `tar -xzf git-escape-*.tar.gz`
+            3. 运行: `cd build && ./git-escape.sh start`
+            
+            ### 更新日志
+            - 自动构建日期: ${{ github.run_number }}
+          files: |
+            git-escape*.tar.gz
+          
+      - name: Upload to GitHub Packages
+        uses: actions/upload-artifact@v3
+        with:
+          name: git-escape-release
+          path: git-escape*.tar.gz
