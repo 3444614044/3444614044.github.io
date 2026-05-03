@@ -1,0 +1,48 @@
+name: Git Escape CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '0 8 * * *'  # 每天早上8点自动构建
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Build game
+        run: |
+          chmod +x build.sh
+          ./build.sh
+        
+      - name: Upload game
+        run: |
+          mkdir -p dist
+          cp git-escape*.tar.gz dist/
+          echo "Game built at $(date)"
+          
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v$(date +"%Y.%m.%d-%H.%M")
+          name: Git Escape v$(date +"%Y.%m.%d-%H.%M")
+          body: |
+            ## Git Escape
+            
+            ### 游戏特点
+            - 命令行解谜游戏
+            - 教授Linux和Git命令
+            - 包含3个关卡
+            
+            ### 使用方法
+            1. 下载游戏包
+            2. 解压: `tar -xzf git-escape*.tar.gz`
+            3. 运行: `cd build && ./git-escape.sh start`
+            
+            ### 自动化构建
+            GitHub Actions每天自动构建新版本
+          files: |
+            git-escape*.tar.gz
