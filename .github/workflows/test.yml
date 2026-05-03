@@ -1,0 +1,40 @@
+name: Test Game Build
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:  # 手动触发
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Test Level 1
+        run: |
+          cd tests
+          ./test_level1.sh
+          
+      - name: Test Level 2
+        run: |
+          cd tests
+          ./test_level2.sh
+        
+      - name: Build game
+        run: |
+          chmod +x build.sh
+          ./build.sh
+        
+      - name: List built files
+        run: |
+          ls -la git-escape*.tar.gz
+          echo "Build completed successfully"
+        
+      - name: Run game demo
+        run: |
+          tar -xzf git-escape*.tar.gz
+          cd build
+          echo "Testing game structure..."
+          ls -la
